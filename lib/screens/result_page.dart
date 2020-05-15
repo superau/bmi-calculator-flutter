@@ -5,6 +5,12 @@ import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/components/reusalbe_card.dart';
 
 class ResultPage extends StatelessWidget {
+  final String result;
+  final String interpretation;
+  final String bmi;
+
+  ResultPage({this.result, this.bmi, this.interpretation});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +25,7 @@ class ResultPage extends StatelessWidget {
               padding: EdgeInsets.all(15.0),
               alignment: Alignment.bottomLeft,
               child: Text(
-                'Your Result',
+                'Result',
                 style: kTitleTextStyle,
               ),
             ),
@@ -30,16 +36,21 @@ class ResultPage extends StatelessWidget {
               color: kActiveCardColor,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    'Normal',
+                    result.toUpperCase(),
                     style: kResultTextStyle,
                   ),
                   Text(
-                    '18.3',
+                    bmi,
                     style: kBMITextStyle,
                   ),
-                  Text('hello', style: kBodyTextStyle,),
+                  Text(
+                    interpretation,
+                    textAlign:TextAlign.center,
+                    style: kBodyTextStyle,
+                  ),
                 ],
               ),
             ),

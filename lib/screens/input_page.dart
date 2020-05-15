@@ -1,3 +1,5 @@
+import 'package:bmi_calculator/calculator_brain.dart';
+
 import 'result_page.dart';
 import 'package:bmi_calculator/components/reusalbe_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -159,7 +161,7 @@ class _InputPageState extends State<InputPage> {
                               icon: FontAwesomeIcons.plus,
                               onPressed: () {
                                 setState(() {
-                                  weight--;
+                                  weight++;
                                 });
                               },
                             )
@@ -200,7 +202,7 @@ class _InputPageState extends State<InputPage> {
                               icon: FontAwesomeIcons.plus,
                               onPressed: () {
                                 setState(() {
-                                  age--;
+                                  age++;
                                 });
                               },
                             )
@@ -213,15 +215,26 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          BottomButton(text: 'CALCULAT', onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => ResultPage()));
-          },)
+          BottomButton(
+            text: 'CALCULAT',
+            onTap: () {
+              CalculatorBrain calc =
+                  CalculatorBrain(height: height, weight: weight);
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultPage(
+                    bmi: calc.calculateBMI(),
+                    result: calc.getResult(),
+                    interpretation: calc.getInterpretation(),
+                  ),
+                ),
+              );
+            },
+          )
         ],
       ),
     );
   }
 }
-
-
-
-
