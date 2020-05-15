@@ -1,10 +1,12 @@
-import 'package:bmi_calculator/result_page.dart';
-import 'package:bmi_calculator/reusalbe_card.dart';
+import 'result_page.dart';
+import 'package:bmi_calculator/components/reusalbe_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'icon_content.dart';
-import 'constants.dart';
+import '../components/bottom_button.dart';
+import '../components/round_icon_button.dart';
+import '../components/icon_content.dart';
+import '../constants.dart';
 
 enum Gender { male, female }
 
@@ -76,7 +78,7 @@ class _InputPageState extends State<InputPage> {
                       children: <Widget>[
                         Text(
                           'HEIGHT',
-                          style: labelStyle,
+                          style: kLabelStyle,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -85,11 +87,11 @@ class _InputPageState extends State<InputPage> {
                           children: <Widget>[
                             Text(
                               height.toString(),
-                              style: numberStyle,
+                              style: kNumberStyle,
                             ),
                             Text(
                               'cm',
-                              style: labelStyle,
+                              style: kLabelStyle,
                             )
                           ],
                         ),
@@ -134,11 +136,11 @@ class _InputPageState extends State<InputPage> {
                       children: <Widget>[
                         Text(
                           'WEIGHT',
-                          style: labelStyle,
+                          style: kLabelStyle,
                         ),
                         Text(
                           weight.toString(),
-                          style: numberStyle,
+                          style: kNumberStyle,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -175,11 +177,11 @@ class _InputPageState extends State<InputPage> {
                       children: <Widget>[
                         Text(
                           'AGE',
-                          style: labelStyle,
+                          style: kLabelStyle,
                         ),
                         Text(
                           age.toString(),
-                          style: numberStyle,
+                          style: kNumberStyle,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -211,41 +213,15 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ResultPage()));
-            },
-            child: Container(
-              child: Text(
-                'CALCULAT',
-                textAlign: TextAlign.center,
-              ),
-              color: kBottomContainerColor,
-              margin: EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-            ),
-          )
+          BottomButton(text: 'CALCULAT', onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ResultPage()));
+          },)
         ],
       ),
     );
   }
 }
 
-class RoundIconButton extends StatelessWidget {
-  final IconData icon;
-  final Function onPressed;
 
-  RoundIconButton({@required this.icon, @required this.onPressed});
 
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: onPressed,
-      child: Icon(icon),
-      constraints: BoxConstraints.tightFor(width: 56.0, height: 56.0),
-      shape: CircleBorder(),
-      fillColor: Color(0xFF5C4F4E),
-    );
-  }
-}
+
